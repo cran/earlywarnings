@@ -2,12 +2,10 @@
 \alias{qda_ews}
 \title{Description: Quick Detection Analysis for Generic Early Warning Signals}
 \usage{
-  qda_ews(timeseries, param = NULL, winsize = 50,
-    detrending = c("no", "gaussian", "linear", "first-diff"),
-    bandwidth = NULL, boots = 100, s_level = 0.05,
-    cutoff = 0.05, detection.threshold = 0.002,
-    grid.size = 50, logtransform = FALSE,
-    interpolate = FALSE)
+qda_ews(timeseries, param = NULL, winsize = 50, detrending = c("no",
+  "gaussian", "linear", "first-diff"), bandwidth = NULL, boots = 100,
+  s_level = 0.05, cutoff = 0.05, detection.threshold = 0.002,
+  grid.size = 50, logtransform = FALSE, interpolate = FALSE)
 }
 \arguments{
   \item{timeseries}{a numeric vector of the observed
@@ -58,7 +56,7 @@
   original. Default is FALSE (assumes there are no gaps in
   the timeseries).
 
-  \code{qda_ews} returns three plots. The first plot
+  \code{qda_ews} produces three plots. The first plot
   contains the original data, the detrending/filtering
   applied and the residuals (if selected), autocorrelation
   and variance. For each statistic trends are estimated by
@@ -68,37 +66,45 @@
   estimated on the surrogated data. Vertical lines
   represent the level of significance, whereas the black
   dots the actual trend found in the time series. The third
-  plot is the reconstructed potential landscape in 2D.}
+  plot is the reconstructed potential landscape in 2D. In
+  addition, the function returns a list containing the
+  output from the respective functions generic_RShiny
+  (indicators); surrogates_RShiny (trends);
+  movpotential_ews (potential analysis)}
 }
 \description{
-  \code{qda_ews} is used to estimate autocorrelation,
-  variance within rolling windows along a timeseries, test
-  the significance of their trends, and reconstruct the
-  potential landscape of the timeseries
+\code{qda_ews} is used to estimate autocorrelation,
+variance within rolling windows along a timeseries, test
+the significance of their trends, and reconstruct the
+potential landscape of the timeseries
 }
 \details{
-  see ref below
+see ref below
+
+Arguments:
 }
 \examples{
 data(foldbif)
-out <- qda_ews(foldbif, param = NULL, winsize = 50, detrending="gaussian", bandwidth=NULL, boots = 50, s_level = 0.05, cutoff=0.05, detection.threshold = 0.002, grid.size = 50, logtransform=FALSE, interpolate=FALSE)
+out <- qda_ews(foldbif, param = NULL, winsize = 50, detrending='gaussian', bandwidth=NULL, 
+boots = 50, s_level = 0.05, cutoff=0.05, detection.threshold = 0.002, grid.size = 50, 
+logtransform=FALSE, interpolate=FALSE)
 }
 \author{
-  Vasilis Dakos, Leo Lahti, March 1, 2013
-  \email{vasilis.dakos@gmail.com}
+Vasilis Dakos, Leo Lahti, March 1, 2013
+\email{vasilis.dakos@gmail.com}
 }
 \references{
-  Dakos, V., et al (2012)."Methods for Detecting Early
-  Warnings of Critical Transitions in Time Series
-  Illustrated Using Simulated Ecological Data." \emph{PLoS
-  ONE} 7(7): e41010. doi:10.1371/journal.pone.0041010
+Dakos, V., et al (2012).'Methods for Detecting Early
+Warnings of Critical Transitions in Time Series Illustrated
+Using Simulated Ecological Data.' \emph{PLoS ONE} 7(7):
+e41010. doi:10.1371/journal.pone.0041010
 }
 \seealso{
-  \code{\link{generic_ews}}; \code{\link{ddjnonparam_ews}};
-  \code{\link{bdstest_ews}}; \code{\link{sensitivity_ews}};
-  \code{\link{surrogates_ews}}; \code{\link{ch_ews}};
-  \code{\link{movpotential_ews}};
-  \code{\link{livpotential_ews}};
+\code{\link{generic_ews}}; \code{\link{ddjnonparam_ews}};
+\code{\link{bdstest_ews}}; \code{\link{sensitivity_ews}};
+\code{\link{surrogates_ews}}; \code{\link{ch_ews}};
+\code{\link{movpotential_ews}};
+\code{\link{livpotential_ews}};
 }
 \keyword{early-warning}
 
